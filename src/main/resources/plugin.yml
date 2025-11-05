@@ -1,0 +1,9 @@
+name: DP-ItemCategory
+version: 2.2.0
+main: com.darksoldier1404.dpic.ItemCategory
+api-version: 1.20
+authors: [ DEAD_POOLIO_ ]
+depend:
+  - DPP-Core
+commands:
+  dic:
