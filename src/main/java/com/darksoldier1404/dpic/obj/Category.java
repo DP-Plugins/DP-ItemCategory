@@ -17,7 +17,7 @@ public class Category implements DataCargo {
     public Category(String name) {
         this.name = name;
         this.maxPage = 1;
-        this.inventory = new DInventory("초야 바보 : " + name, 54, true, true, plugin);
+        this.inventory = new DInventory(name, 54, true, true, plugin);
     }
 
     public Category(String name, int maxPage, DInventory inventory) {
