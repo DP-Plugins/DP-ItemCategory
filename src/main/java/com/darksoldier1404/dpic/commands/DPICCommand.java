@@ -23,16 +23,16 @@ public class DPICCommand implements CommandExecutor, TabCompleter {
             return false;
         }
         if (args.length == 0) {
-            sender.sendMessage(plugin.getPrefix() + "/dpic create <name> - 카테고리 생성");
-            sender.sendMessage(plugin.getPrefix() + "/dpic edit <name> - 카테고리 수정");
-            sender.sendMessage(plugin.getPrefix() + "/dpic maxPage <name> <maxpage> - 카테고리 최대 페이지 설정");
-            sender.sendMessage(plugin.getPrefix() + "/dpic open <name> - 카테고리 오픈");
-            sender.sendMessage(plugin.getPrefix() + "/dpic give <name> <page> <slot> <player> (amount) - 아이템 지급");
+            sender.sendMessage(plugin.getPrefix() + "/dic create <name> - 카테고리 생성");
+            sender.sendMessage(plugin.getPrefix() + "/dic edit <name> - 카테고리 수정");
+            sender.sendMessage(plugin.getPrefix() + "/dic maxPage <name> <maxpage> - 카테고리 최대 페이지 설정");
+            sender.sendMessage(plugin.getPrefix() + "/dic open <name> - 카테고리 오픈");
+            sender.sendMessage(plugin.getPrefix() + "/dic give <name> <page> <slot> <player> (amount) - 아이템 지급");
             return false;
         }
         if (args[0].equalsIgnoreCase("create")) {
             if (args.length < 2) {
-                sender.sendMessage(plugin.getPrefix() + "/dpic create <name> - 카테고리 생성");
+                sender.sendMessage(plugin.getPrefix() + "/dic create <name> - 카테고리 생성");
                 return false;
             }
             DPICFunction.createCategory((Player) sender, args[1]);
@@ -40,7 +40,7 @@ public class DPICCommand implements CommandExecutor, TabCompleter {
         }
         if (args[0].equalsIgnoreCase("edit")) {
             if (args.length < 2) {
-                sender.sendMessage(plugin.getPrefix() + "/dpic edit <name> - 카테고리 수정");
+                sender.sendMessage(plugin.getPrefix() + "/dic edit <name> - 카테고리 수정");
                 return false;
             }
             DPICFunction.editCategory((Player) sender, args[1]);
@@ -48,7 +48,7 @@ public class DPICCommand implements CommandExecutor, TabCompleter {
         }
         if (args[0].equalsIgnoreCase("delete")) {
             if (args.length < 2) {
-                sender.sendMessage(plugin.getPrefix() + "/dpic delete <name> - 카테고리 삭제");
+                sender.sendMessage(plugin.getPrefix() + "/dic delete <name> - 카테고리 삭제");
                 return false;
             }
             DPICFunction.deleteCategory((Player) sender, args[1]);
@@ -56,7 +56,7 @@ public class DPICCommand implements CommandExecutor, TabCompleter {
         }
         if (args[0].equalsIgnoreCase("maxpage")) {
             if (args.length < 3) {
-                sender.sendMessage(plugin.getPrefix() + "/dpic maxpage <name> <maxpage> - 카테고리 최대 페이지 설정");
+                sender.sendMessage(plugin.getPrefix() + "/dic maxpage <name> <maxpage> - 카테고리 최대 페이지 설정");
                 return false;
             }
             try {
@@ -69,7 +69,7 @@ public class DPICCommand implements CommandExecutor, TabCompleter {
         }
         if (args[0].equalsIgnoreCase("open")) {
             if (args.length < 2) {
-                sender.sendMessage(plugin.getPrefix() + "/dpic open <name> - 카테고리 오픈");
+                sender.sendMessage(plugin.getPrefix() + "/dic open <name> - 카테고리 오픈");
                 return false;
             }
             DPICFunction.openCategory((Player) sender, args[1]);
@@ -77,7 +77,7 @@ public class DPICCommand implements CommandExecutor, TabCompleter {
         }
         if (args[0].equalsIgnoreCase("give")) {
             if (args.length < 5) {
-                sender.sendMessage(plugin.getPrefix() + "/dpic give <name> <page> <slot> <player> (amount) - 아이템 지급");
+                sender.sendMessage(plugin.getPrefix() + "/dic give <name> <page> <slot> <player> (amount) - 아이템 지급");
                 return false;
             }
             try {
@@ -97,7 +97,7 @@ public class DPICCommand implements CommandExecutor, TabCompleter {
 
         if (args[0].equalsIgnoreCase("giveall")) {
             if (args.length < 5) {
-                sender.sendMessage(plugin.getPrefix() + "/dpic giveall <name> <page> <slot> (amount) - 아이템 지급");
+                sender.sendMessage(plugin.getPrefix() + "/dic giveall <name> <page> <slot> (amount) - 아이템 지급");
                 return false;
             }
             try {
