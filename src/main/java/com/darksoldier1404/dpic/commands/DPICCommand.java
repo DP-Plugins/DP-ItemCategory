@@ -19,20 +19,20 @@ public class DPICCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (!sender.isOp()) {
-            sender.sendMessage("§cYou do not have permission to use this command.");
+            sender.sendMessage(plugin.getLang().get("no_permission"));
             return false;
         }
         if (args.length == 0) {
-            sender.sendMessage(plugin.getPrefix() + "/dic create <name> - 카테고리 생성");
-            sender.sendMessage(plugin.getPrefix() + "/dic edit <name> - 카테고리 수정");
-            sender.sendMessage(plugin.getPrefix() + "/dic maxPage <name> <maxpage> - 카테고리 최대 페이지 설정");
-            sender.sendMessage(plugin.getPrefix() + "/dic open <name> - 카테고리 오픈");
-            sender.sendMessage(plugin.getPrefix() + "/dic give <name> <page> <slot> <player> (amount) - 아이템 지급");
+            sender.sendMessage(plugin.getPrefix() + plugin.getLang().get("command_help_create"));
+            sender.sendMessage(plugin.getPrefix() + plugin.getLang().get("command_help_edit"));
+            sender.sendMessage(plugin.getPrefix() + plugin.getLang().get("command_help_maxpage"));
+            sender.sendMessage(plugin.getPrefix() + plugin.getLang().get("command_help_open"));
+            sender.sendMessage(plugin.getPrefix() + plugin.getLang().get("command_help_give"));
             return false;
         }
         if (args[0].equalsIgnoreCase("create")) {
             if (args.length < 2) {
-                sender.sendMessage(plugin.getPrefix() + "/dic create <name> - 카테고리 생성");
+                sender.sendMessage(plugin.getPrefix() + plugin.getLang().get("command_help_create"));
                 return false;
             }
             DPICFunction.createCategory((Player) sender, args[1]);
@@ -40,7 +40,7 @@ public class DPICCommand implements CommandExecutor, TabCompleter {
         }
         if (args[0].equalsIgnoreCase("edit")) {
             if (args.length < 2) {
-                sender.sendMessage(plugin.getPrefix() + "/dic edit <name> - 카테고리 수정");
+                sender.sendMessage(plugin.getPrefix() + plugin.getLang().get("command_help_edit"));
                 return false;
             }
             DPICFunction.editCategory((Player) sender, args[1]);
@@ -48,7 +48,7 @@ public class DPICCommand implements CommandExecutor, TabCompleter {
         }
         if (args[0].equalsIgnoreCase("delete")) {
             if (args.length < 2) {
-                sender.sendMessage(plugin.getPrefix() + "/dic delete <name> - 카테고리 삭제");
+                sender.sendMessage(plugin.getPrefix() + plugin.getLang().get("command_help_delete"));
                 return false;
             }
             DPICFunction.deleteCategory((Player) sender, args[1]);
@@ -56,20 +56,20 @@ public class DPICCommand implements CommandExecutor, TabCompleter {
         }
         if (args[0].equalsIgnoreCase("maxpage")) {
             if (args.length < 3) {
-                sender.sendMessage(plugin.getPrefix() + "/dic maxpage <name> <maxpage> - 카테고리 최대 페이지 설정");
+                sender.sendMessage(plugin.getPrefix() + plugin.getLang().get("command_help_maxpage"));
                 return false;
             }
             try {
                 int maxPage = Integer.parseInt(args[2]);
                 DPICFunction.setCategoryMaxPage((Player) sender, args[1], maxPage);
             } catch (NumberFormatException e) {
-                sender.sendMessage(plugin.getPrefix() + "§cInvalid number format for max page.");
+                sender.sendMessage(plugin.getPrefix() + plugin.getLang().get("invalid_number_maxpage"));
             }
             return true;
         }
         if (args[0].equalsIgnoreCase("open")) {
             if (args.length < 2) {
-                sender.sendMessage(plugin.getPrefix() + "/dic open <name> - 카테고리 오픈");
+                sender.sendMessage(plugin.getPrefix() + plugin.getLang().get("command_help_open"));
                 return false;
             }
             DPICFunction.openCategory((Player) sender, args[1]);
@@ -77,7 +77,7 @@ public class DPICCommand implements CommandExecutor, TabCompleter {
         }
         if (args[0].equalsIgnoreCase("give")) {
             if (args.length < 5) {
-                sender.sendMessage(plugin.getPrefix() + "/dic give <name> <page> <slot> <player> (amount) - 아이템 지급");
+                sender.sendMessage(plugin.getPrefix() + plugin.getLang().get("command_help_give"));
                 return false;
             }
             try {
@@ -90,14 +90,14 @@ public class DPICCommand implements CommandExecutor, TabCompleter {
                 }
                 DPICFunction.giveItemFromCategory(sender, args[1], page, slot, targetName, amount);
             } catch (NumberFormatException e) {
-                sender.sendMessage(plugin.getPrefix() + "§cInvalid number format for page, slot, or amount.");
+                sender.sendMessage(plugin.getPrefix() + plugin.getLang().get("invalid_number"));
             }
             return true;
         }
 
         if (args[0].equalsIgnoreCase("giveall")) {
             if (args.length < 5) {
-                sender.sendMessage(plugin.getPrefix() + "/dic giveall <name> <page> <slot> (amount) - 아이템 지급");
+                sender.sendMessage(plugin.getPrefix() + plugin.getLang().get("command_help_giveall"));
                 return false;
             }
             try {
@@ -109,7 +109,7 @@ public class DPICCommand implements CommandExecutor, TabCompleter {
                 }
                 DPICFunction.giveItemFromCategoryToAll(sender, args[1], page, slot, amount);
             } catch (NumberFormatException e) {
-                sender.sendMessage(plugin.getPrefix() + "§cInvalid number format for page, slot, or amount.");
+                sender.sendMessage(plugin.getPrefix() + plugin.getLang().get("invalid_number"));
             }
             return true;
         }

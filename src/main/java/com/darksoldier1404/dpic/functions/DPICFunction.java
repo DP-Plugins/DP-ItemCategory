@@ -20,9 +20,9 @@ public class DPICFunction {
         if (!isExistCategory(name)) {
             Category c = new Category(name);
             plugin.categories.put(name, c);
-            p.sendMessage(plugin.getPrefix() + "§aCategory created successfully!");
+            p.sendMessage(plugin.getPrefix() + plugin.getLang().get("category_created"));
         } else {
-            p.sendMessage(plugin.getPrefix() + "§cCategory already exists!");
+            p.sendMessage(plugin.getPrefix() + plugin.getLang().get("category_exists"));
         }
     }
 
@@ -30,9 +30,9 @@ public class DPICFunction {
         if (isExistCategory(name)) {
             new File(plugin.getDataFolder(), "categories/" + name + ".yml").delete();
             plugin.categories.remove(name);
-            p.sendMessage(plugin.getPrefix() + "§aCategory deleted successfully!");
+            p.sendMessage(plugin.getPrefix() + plugin.getLang().get("category_deleted"));
         } else {
-            p.sendMessage(plugin.getPrefix() + "§cCategory not found!");
+            p.sendMessage(plugin.getPrefix() + plugin.getLang().get("category_not_found"));
         }
     }
 
@@ -44,26 +44,26 @@ public class DPICFunction {
             inv.setObj(c);
             inv.openInventory(p);
         } else {
-            p.sendMessage(plugin.getPrefix() + "§cCategory not found!");
+            p.sendMessage(plugin.getPrefix() + plugin.getLang().get("category_not_found"));
         }
     }
 
     public static void saveCategory(Player p, DInventory inv) {
         Category c = (Category) inv.getObj();
         if (c == null) {
-            p.sendMessage(plugin.getPrefix() + "§cFailed to save category!");
+            p.sendMessage(plugin.getPrefix() + plugin.getLang().get("save_failed"));
             return;
         }
         String name = c.getName();
         if (!isExistCategory(name)) {
-            p.sendMessage(plugin.getPrefix() + "§cCategory not found!");
+            p.sendMessage(plugin.getPrefix() + plugin.getLang().get("category_not_found"));
             return;
         }
         c = plugin.categories.get(name);
         c.setInventory(inv);
         plugin.categories.put(name, c);
         plugin.categories.save(name);
-        p.sendMessage(plugin.getPrefix() + "§aCategory saved successfully!");
+        p.sendMessage(plugin.getPrefix() + plugin.getLang().get("category_saved"));
     }
 
     public static void openCategory(Player p, String name) {
@@ -74,7 +74,7 @@ public class DPICFunction {
             inv.setObj(c);
             inv.openInventory(p);
         } else {
-            p.sendMessage(plugin.getPrefix() + "§cCategory not found!");
+            p.sendMessage(plugin.getPrefix() + plugin.getLang().get("category_not_found"));
         }
     }
 
@@ -97,11 +97,11 @@ public class DPICFunction {
 
     public static void setCategoryMaxPage(Player p, @NotNull String arg, int maxPage) {
         if (!isExistCategory(arg)) {
-            p.sendMessage(plugin.getPrefix() + "§cCategory not found!");
+            p.sendMessage(plugin.getPrefix() + plugin.getLang().get("category_not_found"));
             return;
         }
         if (maxPage < 1) {
-            p.sendMessage(plugin.getPrefix() + "§cMax page must be greater than 0!");
+            p.sendMessage(plugin.getPrefix() + plugin.getLang().get("maxpage_invalid"));
             return;
         }
         Category c = plugin.categories.get(arg);
@@ -110,27 +110,27 @@ public class DPICFunction {
         c.setInventory(inv);
         plugin.categories.put(arg, c);
         plugin.categories.save(arg);
-        p.sendMessage(plugin.getPrefix() + "§aMax page set to " + maxPage + " for category " + arg + ".");
+        p.sendMessage(plugin.getPrefix() + plugin.getLang().getWithArgs("maxpage_set", arg, String.valueOf(maxPage)));
     }
 
     public static void giveItemFromCategory(CommandSender sender, @NotNull String name, int page, int slot, String targetName, int amount) {
         if (!isExistCategory(name)) {
-            sender.sendMessage(plugin.getPrefix() + "§cCategory not found!");
+            sender.sendMessage(plugin.getPrefix() + plugin.getLang().get("category_not_found"));
             return;
         }
         DInventory inv = getCategoryInventory(name);
         if (inv == null) {
-            sender.sendMessage(plugin.getPrefix() + "§cFailed to load category inventory!");
+            sender.sendMessage(plugin.getPrefix() + plugin.getLang().get("load_inventory_failed"));
             return;
         }
         ItemStack item = inv.getPageItems().get(page)[slot];
         if (item == null) {
-            sender.sendMessage(plugin.getPrefix() + "§cNo item found in the specified slot on this page!");
+            sender.sendMessage(plugin.getPrefix() + plugin.getLang().get("no_item_in_slot"));
             return;
         }
         Player target = Bukkit.getPlayerExact(targetName);
         if (target == null) {
-            sender.sendMessage(plugin.getPrefix() + "§cTarget player not found or not online!");
+            sender.sendMessage(plugin.getPrefix() + plugin.getLang().get("player_not_found"));
             return;
         }
         item.setAmount(amount);
@@ -139,17 +139,17 @@ public class DPICFunction {
 
     public static void giveItemFromCategoryToAll(@NotNull CommandSender sender, @NotNull String name, int page, int slot, int amount) {
         if (!isExistCategory(name)) {
-            sender.sendMessage(plugin.getPrefix() + "§cCategory not found!");
+            sender.sendMessage(plugin.getPrefix() + plugin.getLang().get("category_not_found"));
             return;
         }
         DInventory inv = getCategoryInventory(name);
         if (inv == null) {
-            sender.sendMessage(plugin.getPrefix() + "§cFailed to load category inventory!");
+            sender.sendMessage(plugin.getPrefix() + plugin.getLang().get("load_inventory_failed"));
             return;
         }
         ItemStack item = inv.getPageItems().get(page)[slot];
         if (item == null) {
-            sender.sendMessage(plugin.getPrefix() + "§cNo item found in the specified slot on this page!");
+            sender.sendMessage(plugin.getPrefix() + plugin.getLang().get("no_item_in_slot"));
             return;
         }
         item.setAmount(amount);
