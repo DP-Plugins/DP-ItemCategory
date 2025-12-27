@@ -9,7 +9,7 @@ import com.darksoldier1404.dppc.data.DataContainer;
 import com.darksoldier1404.dppc.data.DataType;
 import com.darksoldier1404.dppc.utils.PluginUtil;
 
-@DPPCoreVersion(since = "5.3.0")
+@DPPCoreVersion(since = "5.3.3")
 public class ItemCategory extends DPlugin {
     public static ItemCategory plugin;
     public static DataContainer<String, Category> categories;
@@ -19,7 +19,7 @@ public class ItemCategory extends DPlugin {
     }
 
     public ItemCategory() {
-        super(false);
+        super(true);
         plugin = this;
         init();
         categories = loadDataContainer(new DataContainer<>(plugin, DataType.CUSTOM, "categories"), Category.class);

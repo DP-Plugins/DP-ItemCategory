@@ -40,10 +40,6 @@ publishing {
         }
     }
 }
-build {
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
-}
 
 task DS_BUILD {
     doFirst {
